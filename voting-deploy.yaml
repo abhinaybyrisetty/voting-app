@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: voting-app-deployment
   labels:
-    app: demo-voting-app
+    app: voting-app
 spec:
   replicas: 1  # Adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: demo-voting-app
+      name: voting
   template:
     metadata:
       labels:
-        app: demo-voting-app
+        name: voting
     spec:
       containers:
       - name: voting-app

@@ -3,19 +3,26 @@ kind: Deployment
 metadata:
   name: redis-deployment
   labels:
-    app: demo-voting-app
+    app: voting-app
+    name: redis
 spec:
   replicas: 1  # Adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: demo-voting-app
+      name: redis
   template:
     metadata:
       labels:
-        app: demo-voting-app
+        name: redis
     spec:
       containers:
       - name: redis
         image: redis:latest
         ports:
         - containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: redis-data
+      volumes:
+      - name: redis-data
+        emptyDir: {}

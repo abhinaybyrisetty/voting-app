@@ -3,17 +3,18 @@ kind: StatefulSet
 metadata:
   name: postgres-statefulset
   labels:
-    app: demo-voting-app
+    app: voting-app
+    name: pg-db
 spec:
   serviceName: "postgres"
   replicas: 1  # Adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: demo-voting-app
+      name: pg-db
   template:
     metadata:
       labels:
-        app: demo-voting-app
+        name: pg-db
     spec:
       containers:
       - name: postgres
@@ -27,6 +28,10 @@ spec:
           value: trust
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+          subPath: data
   volumeClaimTemplates:
   - metadata:
       name: data
