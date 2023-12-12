@@ -5,11 +5,11 @@ K8s manifests have been created to deploy the application on kubernetes cluster.
 
 
 ## Architecture
-A front-end web app in Python which lets you vote between two options
-A Redis which collects new votes
-A .NET worker which consumes votes and stores them in Postgres DB
-A Postgres database backed by a K8s PVC
-A Node.js web app which shows the results of the voting in real time
+* A front-end web app in Python which lets you vote between two options
+* A Redis which collects new votes
+* A .NET worker which consumes votes and stores them in Postgres DB
+* A Postgres database backed by a K8s PVC
+* A Node.js web app which shows the results of the voting in real time
 
 ## Benifits
 1. Scalable: Current design allows the services to horizontally scale
